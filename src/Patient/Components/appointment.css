@@ -1,0 +1,56 @@
+.appoinment-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: calc(100vh - 70px);
+
+}
+.appoinment-container .appointmentForm{
+    width: 40%;
+    height: 70%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 3rem 2rem;
+    box-shadow: #959da533 0 8px 24px;;
+}
+.appoinment-container .appointmentForm .input-container{
+    width: 100%;
+    position: relative;
+    margin-bottom: .7rem;
+    padding: 20px 0 0;
+}
+.appoinment-container .appointmentForm .input-container input{
+    width: 100%;
+    padding: 10px 0;
+    margin-top: 10px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid;
+}
+.appoinment-container .appointmentForm .input-container .form-control2::placeholder{
+    color: blue;
+    right: 0; 
+}
+.appoinment-container .appointmentForm .input-container label{
+    position: absolute;
+    top: 0;
+}
+.appoinment-container .appoinment-img{
+    width: 45%;
+    height: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.appoinment-container .appoinment-img .text{
+
+}
+.appoinment-container .appoinment-img img{
+    width: 500px;
+}
+

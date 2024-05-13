@@ -1,0 +1,99 @@
+.form__group {
+  position: relative;
+  padding: 3rem 2rem;
+  width: 35rem;
+  margin-bottom: 0.7rem;
+  text-align: center;
+  margin-top: 60px;
+  margin-right: auto;
+  margin-left: auto;
+  box-shadow: #959da533 0 8px 24px;
+  }
+  .form__group .text{
+  }
+  .form__group form{
+    padding: 20px 0 0 ;
+    /* display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap; */
+  }
+  .form__group form .partOne{
+    display: flex;
+    column-gap: 20px;
+  }
+  .form__group form .partTwo{
+    display: flex;
+    column-gap: 20px;
+  }
+  .form__group form .SignupButton{
+    background-color: #121212;
+    position: relative;
+    /* margin-top: 2rem; */
+    border-radius: 6px;
+    padding: 5px;
+  }
+  .form__group form .SignupButton .SignUP{
+    color: white;
+    font-size: 18px;
+    border: none;
+    background-color: #121212;
+    outline: none;
+  }
+  .form__group form .input{
+    padding: 20px 0 0;
+    position: relative;
+    margin-bottom: 1.7rem;
+    width: 100%;
+  }
+  .form__field {
+    font-family: inherit;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 10px;
+    /* border-bottom: 2px solid #9b9b9b; */
+    outline: 0;
+    font-size: 17px;
+    padding: 7px 0;
+    background: transparent;
+    transition: border-color 0.2s;
+  }
+  
+  .form__field::placeholder {
+    color: transparent;
+  }
+  
+  .form__field:placeholder-shown ~ .form__label {
+    font-size: 17px;
+    cursor: text;
+    top: 25px;
+  }
+  
+  .form__label {
+    position: absolute;
+    display: block;
+    transition: 0.2s;
+    font-size: 17px;
+    color: #9b9b9b;
+    pointer-events: none;
+    left: 10px;
+  }
+  
+  .form__field:focus {
+    font-weight: 500;
+    border-color: #121212;
+  }
+  
+  .form__field:focus ~ .form__label {
+    position: absolute;
+    top: -10px;
+    display: block;
+    transition: 0.2s;
+    font-size: 17px;
+    color: #121212;
+    font-weight: 500;
+  }
+  
+  .form__field:not(:placeholder-shown) ~ .form__label {
+    top: 0;
+  }
