@@ -1,8 +1,19 @@
 import SignUpForm from "../Components/Signup"
-import { json, redirect } from "react-router-dom";
+import { json, redirect , useActionData} from "react-router-dom";
 function SignUpPage(){
+
+    const data = useActionData();
+
     return (
-        <SignUpForm></SignUpForm>
+        <div>
+            {data && data.errors && <ul>
+                {Object.values(data.errors).map(err=>(
+                  <li key={err}>{err}</li>
+                ))}
+              </ul>
+              }
+            <SignUpForm></SignUpForm>
+        </div>
     )
 }
 
@@ -42,5 +53,5 @@ export async function action({request}){
         throw json({message:'could not sign up'}, {status:500})
     }
 
-    return redirect('/')
+    return redirect('/login')
 }

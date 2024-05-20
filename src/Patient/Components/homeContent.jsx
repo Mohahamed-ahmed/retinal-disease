@@ -4,12 +4,14 @@ import retinaExam from '../../assets/copy.jpg'
 import farSight from '../../assets/farSightExam.jpg'
 import breifPhoto from '../../assets/1000_F_289699072_bancBMaq9zPw9i4ORg3pp2Zt70oxM5Xn.jpg'
 import { useNavigate } from 'react-router-dom'
+import { getId } from '../util/auth'
 
 function HomeContent(){
     const navigate = useNavigate();
+    const userId = getId()
 
     const formHandel=()=>{
-        navigate('/makeAppointments')
+        navigate('/MakeAppointments/' + userId)
     }
     return (
         <>

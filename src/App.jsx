@@ -11,6 +11,7 @@ import PatientAppointments from './Patient/Components/PatientAppointments'
 import PatientProfile from './Patient/Components/patientProfile'
 import DoctorHome from './Patient/Components/DoctorHomeContent'
 import ColorBlindnessTest from './Patient/Pages/color-blindenss-page'
+import MakeAppointments, {loader as getDoctorData} from './Patient/Pages/make-appointments'
 function App() {
 
   const router = createBrowserRouter([
@@ -32,8 +33,18 @@ function App() {
           element:<LoginPage></LoginPage>,
           action:loginAction
         },{
-          path:'/makeAppointments',
-          element:<Form></Form>
+          path:'/MakeAppointments',
+          children:[
+            {
+              index:true,
+            },
+            {
+              path:':doctorId',
+              element:<MakeAppointments></MakeAppointments>,
+              loader:getDoctorData,
+              id:'doctor-details',
+            },
+          ]
         },
         {
           path:'/contactUs',
@@ -61,10 +72,6 @@ function App() {
             }
           ]
 
-        }
-        ,{
-          path:'/test',
-          element:<ColorBlindnessTest></ColorBlindnessTest>
         }
       ]
     }
