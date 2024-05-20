@@ -38,6 +38,13 @@ export async function action({request}){
     const token = resdata.token;
 
     localStorage.setItem('token', token)
+/////////////////////////////////////////
+    const userId = resdata.userData.id;
+    localStorage.setItem('userId',userId)
+
+    if(resdata.userData.role === 'doctor'){
+        return redirect('/doctor')
+    }
 
     return redirect('/');
 }

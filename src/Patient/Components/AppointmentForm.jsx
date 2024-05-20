@@ -5,9 +5,14 @@ import appoinment from '../../assets/Screensho2t 2024-03-24 144615.png'
 
 
 
-const Form = () => {
+function AppForm(prop) {
+
 
     const [date, setDate] = useState(new Date());
+    let {datadoc} = prop;
+
+    console.log(datadoc)
+
     return (
       <div className='appoinment-container'>
         <div className='appoinment-img'>
@@ -47,6 +52,6 @@ const Form = () => {
         </form>
       </div>
     );
-  };
+  }
   
-  export default Form;
+  export default AppForm;
