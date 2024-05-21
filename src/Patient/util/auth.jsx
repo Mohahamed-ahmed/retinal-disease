@@ -3,7 +3,7 @@ export function getAuth(){
     return token;
 }
 
-export function getId(){
-    const userId = localStorage.getItem('userId');
-    return userId
-}
+// export function getId(){
+//     const userId = localStorage.getItem('userId');
+//     return userId
+// }

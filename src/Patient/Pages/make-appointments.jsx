@@ -1,13 +1,15 @@
-import { useRouteLoaderData,json } from "react-router-dom";
+import { useRouteLoaderData,json ,useParams} from "react-router-dom";
 import AppForm from "../Components/AppointmentForm";
-import { getId ,getAuth } from "../util/auth";
+import {getAuth } from "../util/auth";
 
 function MakeAppointments(){
     const data = useRouteLoaderData('doctor-details');
-    const doctordata = data 
-    console.log(doctordata)
+    const doctordata = data.doctor 
+    const param = useParams()
+    const id = param.doctorId
+    // console.log(doctordata)
     return (
-        <AppForm datadoc={doctordata}></AppForm>
+        <AppForm datadoc={doctordata} doctorId={id}></AppForm>
     )
 
 }
@@ -20,6 +22,7 @@ export async function loader({params}){
     const token = getAuth()
 
     const id = params.doctorId;
+
     const response = await fetch('https://retinal-diseases-diagnosis-system.vercel.app/doctor/details/' + id ,{
         method:'GET',
         headers:{

@@ -5,13 +5,14 @@ import { createBrowserRouter ,RouterProvider } from 'react-router-dom'
 import SignUpPage, {action as signUpAction} from './Patient/Pages/SignUpPage'
 import LoginPage, {action as loginAction} from './Patient/Pages/loginPage'
 // import AppointmentForm from './Patient/Components/AppointmentForm'
-import Form from './Patient/Components/AppointmentForm'
+// import Form from './Patient/Components/AppointmentForm'
 import ContactUs from './Patient/Components/ContactUs'
 import PatientAppointments from './Patient/Components/PatientAppointments'
-import PatientProfile from './Patient/Components/patientProfile'
+// import PatientProfile from './Patient/Components/patientProfile'
 import DoctorHome from './Patient/Components/DoctorHomeContent'
 import ColorBlindnessTest from './Patient/Pages/color-blindenss-page'
 import MakeAppointments, {loader as getDoctorData} from './Patient/Pages/make-appointments'
+import PatientProfilePage,{loader as getPatientData} from './Patient/Pages/Patient-profile'
 function App() {
 
   const router = createBrowserRouter([
@@ -56,7 +57,9 @@ function App() {
         },
         {
           path:'/profile',
-          element:<PatientProfile></PatientProfile>
+          element:<PatientProfilePage></PatientProfilePage>,
+          loader:getPatientData,
+          id:'patient-data'
         },
         {
           path:'/doctor',

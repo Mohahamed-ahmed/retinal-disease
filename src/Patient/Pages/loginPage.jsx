@@ -35,12 +35,16 @@ export async function action({request}){
     }
 
     const resdata = await response.json();
-    const token = resdata.token;
+    const token = resdata.accessToken;
 
+    console.log(resdata)
+    console.log(token)
     localStorage.setItem('token', token)
+
+    
 /////////////////////////////////////////
-    const userId = resdata.userData.id;
-    localStorage.setItem('userId',userId)
+    // const userId = resdata.userData.id;
+    // localStorage.setItem('userId',userId)
 
     if(resdata.userData.role === 'doctor'){
         return redirect('/doctor')

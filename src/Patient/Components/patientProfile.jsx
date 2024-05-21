@@ -4,7 +4,10 @@ import profile from '../../assets/WhatsApp Image 2024-03-22 at 07.32.21_23399fff
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare,  } from '@fortawesome/free-solid-svg-icons';
 
-function PatientProfile(){
+function PatientProfile(prop){
+
+    let {patientData} = prop
+
     const [Clicked ,SetIsClicked] = useState(false);
 
     const clickedHandler=()=>{
@@ -134,7 +137,7 @@ function PatientProfile(){
                 <div className="profData">
                     <div className="name-field">
                         <p>FullName</p>                
-                        <p>Mohamed Ahmed</p>
+                        <p>{patientData.name}</p>
                     </div>
                     <div className="email-field">
                         <p>Email</p>                
@@ -142,7 +145,7 @@ function PatientProfile(){
                     </div>
                     <div className="address-field">
                         <p>Address</p>                
-                        <p>Banha</p>
+                        <p>{patientData.address}</p>
                     </div>
                     <div className="age-field">
                         <p>Age</p>                
