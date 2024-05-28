@@ -13,77 +13,90 @@ import DoctorHome from './Patient/Components/DoctorHomeContent'
 import ColorBlindnessTest from './Patient/Pages/color-blindenss-page'
 import MakeAppointments, {loader as getDoctorData} from './Patient/Pages/make-appointments'
 import PatientProfilePage,{loader as getPatientData} from './Patient/Pages/Patient-profile'
-function App() {
+import DoctorAppointments from './Patient/Pages/DoctorAppointments'
+import AppointmentDetails from "./Patient/Components/doctor/AppointmentDetails";
 
+import { QueryClientProvider } from "@tanstack/react-query";
+import { client } from './services/api'
+
+
+function App() {
   const router = createBrowserRouter([
     {
-      path:'/',
-      element:<Root></Root>,
-      children:[
+      path: "/",
+      element: <Root></Root>,
+      children: [
         {
-          index:true,
-          element:<Home></Home>
+          index: true,
+          element: <Home></Home>,
         },
         {
-          path:'/signup',
-          element:<SignUpPage></SignUpPage>,
-          action:signUpAction
+          path: "/signup",
+          element: <SignUpPage></SignUpPage>,
+          action: signUpAction,
         },
         {
-          path:'/login',
-          element:<LoginPage></LoginPage>,
-          action:loginAction
-        },{
-          path:'/MakeAppointments',
-          children:[
+          path: "/login",
+          element: <LoginPage></LoginPage>,
+          action: loginAction,
+        },
+        {
+          path: "/MakeAppointments",
+          children: [
             {
-              index:true,
+              index: true,
             },
             {
-              path:':doctorId',
-              element:<MakeAppointments></MakeAppointments>,
-              loader:getDoctorData,
-              id:'doctor-details',
+              path: ":doctorId",
+              element: <MakeAppointments></MakeAppointments>,
+              loader: getDoctorData,
+              id: "doctor-details",
             },
-          ]
+          ],
         },
         {
-          path:'/contactUs',
-          element:<ContactUs></ContactUs>
+          path: "/contactUs",
+          element: <ContactUs></ContactUs>,
         },
         {
-          path:'/appointments',
-          element:<PatientAppointments></PatientAppointments>
+          path: "/appointments",
+          element: <PatientAppointments></PatientAppointments>,
         },
         {
-          path:'/profile',
-          element:<PatientProfilePage></PatientProfilePage>,
-          loader:getPatientData,
-          id:'patient-data'
+          path: "/profile",
+          element: <PatientProfilePage></PatientProfilePage>,
+          loader: getPatientData,
+          id: "patient-data",
         },
         {
-          path:'/doctor',
-          children:[
+          path: "/doctor",
+          children: [
             {
-              index:true,
-              element:<DoctorHome></DoctorHome>
-            }
-            ,
+              index: true,
+              element: <DoctorHome></DoctorHome>,
+            },
             {
-              path:'test',
-              element:<ColorBlindnessTest></ColorBlindnessTest>
-            }
-          ]
-
-        }
-      ]
-    }
-  ])
+              path: "test",
+              element: <ColorBlindnessTest></ColorBlindnessTest>,
+            },
+            {
+              path: "appointments",
+              element: <DoctorAppointments />,
+            },
+            {
+              path: "appointments/:appointmentId",
+              element: <AppointmentDetails />,
+            },
+          ],
+        },
+      ],
+    },
+  ]);
 
   return (
-    <>
+    <QueryClientProvider client={client}>
       <RouterProvider router={router}></RouterProvider>
-    </>
+    </QueryClientProvider>
   )
 }
 
