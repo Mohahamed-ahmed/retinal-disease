@@ -1,0 +1,64 @@
+.container {
+  display: flex;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.container .left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 50%;
+}
+
+.container .left p {
+    margin: .5rem 0;
+}
+
+.container .left .app-details, 
+.container .left .patient-details,
+.container .right {
+    background-color: #eee;
+    border-radius: 16px;
+    padding: 1rem;
+} 
+
+.container .left .app-details p:first-of-type, 
+.container .left .patient-details p:first-of-type {
+    color: #2196f3;
+    font-weight: 500;
+}
+
+.container .left .app-details {
+}
+
+.container .left .patient-details {
+}
+
+.container .right {
+    flex-grow: 1;
+}
+
+
+.container .info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container .title {
+    margin: 0;
+    padding-bottom: .25rem;
+    border-bottom: 1px solid #222;
+    width: max-content;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .container .left {
+        width: auto;
+    }
+}
