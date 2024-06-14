@@ -13,6 +13,28 @@ const apiClient = axios.create({
   timeout: 10000,
 });
 
+const refreshToken = async () => {
+  try {
+    const response = await axios.get(
+      "https://retinal-diseases-diagnosis-system.vercel.app/auth/refresh-token",
+      {
+        withCredentials: true,
+      }
+    );
+    const newAccessToken = response.data.accessToken;
+    if (newAccessToken) {
+      localStorage.setItem("token", newAccessToken);
+    }
+    return newAccessToken;
+  } catch (error) {
+    // Handle the error, redirecting to the login page
+    console.error("Failed to refresh token:", error);
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+    return null;
+  }
+};
+
 apiClient.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
@@ -26,7 +48,19 @@ apiClient.interceptors.request.use(
 
 apiClient.interceptors.response.use(
   (response) => response,
-  (error) => {
+  async (error) => {
+    const originalRequest = error.config;
+    if (
+      error.response.data.message === "jwt expired" &&
+      !originalRequest._retry
+    ) {
+      originalRequest._retry = true;
+      const newAccessToken = await refreshToken();
+      if (newAccessToken) {
+        originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
+        return apiClient(originalRequest);
+      }
+    }
     let customError = {
       info: error.response?.data || "Something went wrong",
       code: error.response?.status || 500,
