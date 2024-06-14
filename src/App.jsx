@@ -13,6 +13,9 @@ import DoctorHome from './Patient/Components/DoctorHomeContent'
 import ColorBlindnessTest from './Patient/Pages/color-blindenss-page'
 import MakeAppointments, {loader as getDoctorData} from './Patient/Pages/make-appointments'
 import PatientProfilePage,{loader as getPatientData} from './Patient/Pages/Patient-profile'
+import PatientAppointmentsPage,{loader as getPatientAppointments} from './Patient/Pages/PatientAppointments'
+import FarShortTest from './Patient/Pages/far-short-test'
+import AppointmentDetailsPage,{loader as appointmentDetails} from './Patient/Pages/appointment-details'
 function App() {
 
   const router = createBrowserRouter([
@@ -53,7 +56,20 @@ function App() {
         },
         {
           path:'/appointments',
-          element:<PatientAppointments></PatientAppointments>
+          children:[
+            {
+              index:true,
+              element:<PatientAppointmentsPage></PatientAppointmentsPage>,
+              loader:getPatientAppointments,
+              id:'appointments'
+            },
+            {
+              path:':appointmentId',
+              element:<AppointmentDetailsPage></AppointmentDetailsPage>,
+              id:"appointment-details",
+              loader:appointmentDetails
+            }
+          ]
         },
         {
           path:'/profile',
@@ -72,6 +88,10 @@ function App() {
             {
               path:'test',
               element:<ColorBlindnessTest></ColorBlindnessTest>
+            },
+            {
+              path:'test2',
+              element:<FarShortTest></FarShortTest>
             }
           ]
 

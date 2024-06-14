@@ -11,6 +11,12 @@ function DoctorHome(){
         navigate('test')
 
     }
+
+    const clickTest2=()=>{
+        console.log('ggggg')
+        navigate('test2')
+
+    }
     console.log('hhhhh')
 
     return(
@@ -32,7 +38,7 @@ function DoctorHome(){
                 </div>
                 <div className='box'>
                     <img src={farSight} alt="" />
-                    <button className='testButtno'>Go To Test</button>
+                    <button className='testButtno' onClick={clickTest2}>Go To Test</button>
                 </div>
             </div>
         </main>
