@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import Flatpickr from 'react-flatpickr'
-import { useState,} from 'react';
+import { useState,useCallback} from 'react';
 import {useParams,json} from 'react-router-dom'
 import { getAuth } from '../util/auth';
 import './appointment.css';
@@ -14,6 +14,10 @@ function AppForm({datadoc,doctorId}) {
     const [date, setDate] = useState(new Date());
     const [time, setTime] = useState(new Date());
 
+    const [availableHours,SetavailableAppointments] = useState([]);
+    const [appointment,setAppointment] = useState('')
+    const [succsessfullMessage, SetsuccsessfullMessage] = useState('')
+
     // let {datadoc} = prop;
     // let {doctorId} = prop;
 
@@ -26,25 +30,29 @@ function AppForm({datadoc,doctorId}) {
     // const token = getAuth()
     // const token = localStorage.getItem('token')
     // console.log(token)
+
+   
     
+    const token = getAuth()
 
     const changeDateHandler= async(selectedDate)=>{
-      setDate(selectedDate);
+      // setDate(selectedDate);
       const appointmentDate = new Date(
         selectedDate.getFullYear(),
         selectedDate.getMonth(),
         selectedDate.getDate()
       )
 
-
       const data={
         date:appointmentDate.toISOString().split('T')[0],
-        doctorId:doctorId
+        doctorId:'dce9adfd-3299-4173-95b6-9d005390a2d7'
       }
+
+      setDate(appointmentDate.toISOString().split('T')[0])
+
       // console.log(date)
       // console.log(appointmentDate)
 
-      const token = getAuth()
       console.log('token',token);
 
       if (!token) {
@@ -76,8 +84,55 @@ function AppForm({datadoc,doctorId}) {
       }
       throw new Error('Cannot get the data');
       }else{
-        console.log(await response.json())
-        return response
+        // console.log(await response.json())
+        const avialbleAppointments = await response.json();
+
+        SetavailableAppointments(avialbleAppointments.availableAppointments)
+        // console.log(avialbleAppointments.availableAppointments)
+        // return response
+      }
+    }
+
+    const handleAppointment= useCallback(function handleAppointment(selectedAppointment){
+      setAppointment(selectedAppointment)
+      console.log(selectedAppointment)
+    },[])
+
+    const submitAppointmentHandler =async(event)=>{
+      event.preventDefault();
+
+      const chosenAppointment={
+        "doctorId": "dce9adfd-3299-4173-95b6-9d005390a2d7",
+        date:date,
+        time: appointment
+      }
+      console.log(chosenAppointment)
+
+      const response = await fetch('https://retinal-diseases-diagnosis-system.vercel.app/patient/make-appointment',{
+        method:'POST',
+        headers:{
+          'Authorization': 'Bearer ' + token,
+          'Content-Type': 'application/json'
+        },
+        body:JSON.stringify(chosenAppointment)
+      });
+
+      if(!response.ok){
+        const errordata = await response.json()
+        console.log(errordata)
+        // throw json(
+        //   {message:'cant get the data'},
+        //   {status:500}
+        // )
+        if (response.status === 403) {
+          console.error('Forbidden: You do not have permission to access this resource.');
+      } else {
+          console.error('Error:', response.statusText);
+      }
+      throw new Error('Cannot get the data');
+      }else{
+        const successMessage = await response.json()
+        SetsuccsessfullMessage(successMessage.message)
       }
     }
 
@@ -94,7 +149,7 @@ function AppForm({datadoc,doctorId}) {
           </div>
         </div>
 
-        <form className='appointmentForm'>
+        <form className='appointmentForm' onSubmit={submitAppointmentHandler}>
           {/* <div className="input-container">
             <label htmlFor="name">Name</label>
             <input type="text" className="input-field" id="name" />
@@ -119,25 +174,21 @@ function AppForm({datadoc,doctorId}) {
               }}
             />
           </div>
-          <div className="input-container">
-            <label htmlFor="birthdate">time</label>
-            <Flatpickr
-              data-input
-              className="form-control2"
-              value={time}
-              placeholder={time}
-              onChange={(time) => setTime(time)}
-              options={{
-                  // enableTime: true,
-                  enableTime: true,
-                  noCalendar:true,
-                  dateFormat: "H:i",
-                  time_24hr:true,
-                  altInput: true,
-                  altFormat: "h:i K",
-              }}
-            />
-          </div>
+          {!succsessfullMessage ? 
+           <div className="input-container">
+           <label htmlFor="birthdate">time</label>
+           <div className='hours-container'>
+             {availableHours.map((hours)=>(
+               <p key={hours}>
+                 <button onClick={()=>handleAppointment(hours)} type='button'>{hours}</button>
+               </p>
+             ))}
+           </div>
+         </div>
+          :
+            <p>{succsessfullMessage}</p>
+          }
+          
           <button type="submit" className="btn btn-primary">
             Submit
           </button>

@@ -3,12 +3,51 @@ import './patientProfile.css'
 import profile from '../../assets/WhatsApp Image 2024-03-22 at 07.32.21_23399fff.jpg'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare,  } from '@fortawesome/free-solid-svg-icons';
+import {Form ,json,redirect,useNavigate} from 'react-router-dom'
+import { getAuth } from "../util/auth";
 
 function PatientProfile(prop){
 
+    const navigate = useNavigate()
+
     let {patientData} = prop
+    const currentdate = new Date()
+    const date = new Date(patientData.DOB)
+
+    let age = currentdate.getFullYear() - date.getFullYear();
+    const monthDifference = currentdate.getMonth() - date.getMonth();
+    const dayDifference = currentdate.getDate() - date.getDate();
+
+
+  if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
+    age--;
+  }
 
     const [Clicked ,SetIsClicked] = useState(false);
+    const [name,SetName] = useState(patientData.name)
+    const [phone,SetPhone] = useState(patientData.phone)
+    const [address,SetAddress] = useState(patientData.Address)
+    const [aged,SetAge] = useState(patientData.DOB)
+
+    const changeNameHandler = (event)=>{
+        SetName(event.target.value)
+    }
+    const changePhoneHandler = (event)=>{
+        SetPhone(event.target.value)
+    }
+    const changeAddressHandler = (event)=>{
+        SetAddress(event.target.value)
+    }
+    const changeAgeHandler = (event)=>{
+        SetAge(event.target.value)
+    }
+
+    const profileDate={
+        name:name,
+        phone:phone,
+        address:address,
+        age:aged
+    }
 
     const clickedHandler=()=>{
         SetIsClicked(true)
@@ -16,6 +55,30 @@ function PatientProfile(prop){
     const saveHandler=()=>{
         SetIsClicked(false);
     }
+
+    const EditProfileHandler = async (event)=>{
+        event.preventDefault()
+        const token = getAuth();
+
+        const response = await fetch('https://retinal-diseases-diagnosis-system.vercel.app/patient/profile',{
+            method:'PUT',
+            headers:{
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json'
+            },
+            body:JSON.stringify(profileDate)
+        })
+        if(!response.ok){
+            throw new json(
+                {message:'cant get appointments'},
+                {status:500}
+            )
+        }
+        // SetIsClicked(false);
+        navigate('/profile',{replace:true})
+        // return response
+    }
+
     return (
         <div className="profContainer">
             <div className="left-side">
@@ -43,92 +106,60 @@ function PatientProfile(prop){
             ?
             <div className="profile__form__group">
                 <h2 className="formHead">You Can Edit Your Data Down There</h2>
-            <form>
+            <form onSubmit={EditProfileHandler}>
                 <div className="firstPart">
                     <div className='input'>
                         <input
-                        name='first-name'
+                        name='fullname'
                         className='profile__form__field'
                         type="text"
-                        id="firstName"
-                        placeholder='first name'
+                        id="fullname"
+                        placeholder='FullName'
+                        onChange={changeNameHandler}
+                        defaultValue={patientData ? patientData.name : ''}
                         />
-                        <label htmlFor="firstName" className='profile__form__label'>First Name:</label>
+                        <label htmlFor="fullname" className='profile__form__label'>FullName:</label>
                     </div>
                     <div className='input'>
                         <input
-                        name='last-name'
+                        name='phone'
                         className='profile__form__field'
-                        type="text"
-                        id="lastName"
-                        placeholder='last name'
+                        type="number"
+                        id="phone"
+                        placeholder='phone number'
+                        onChange={changePhoneHandler}
+                        defaultValue={patientData ? patientData.phone : ''}
                         />
-                        <label htmlFor="lastName" className='profile__form__label'>Last Name:</label>
-                    </div>
-                    <div className='input'>
-                        <input
-                        name='email'
-                        className='profile__form__field'
-                        type="email"
-                        id="email"
-                        placeholder='email'
-                        />
-                        <label htmlFor="email" className='profile__form__label'>Email:</label>
-                    </div>
-                    <div className='input'>
-                        <input
-                        name='password'
-                        className='profile__form__field'
-                        type="password"
-                        id="password"
-                        placeholder='password'
-                        />
-                        <label htmlFor="password" className='profile__form__label'>Password:</label>
+                        <label htmlFor="phone" className='profile__form__label'>phone Number:</label>
                     </div>
                 </div>
                 <div className="secondPart">
-                    <div className='input'>
+                <div className='input'>
                         <input
-                        name='first-name'
+                        name='address'
                         className='profile__form__field'
                         type="text"
-                        id="firstName"
-                        placeholder='first name'
+                        id="address"
+                        placeholder='address'
+                        onChange={changeAddressHandler}
+                        defaultValue={patientData ? patientData.address : ''}
                         />
-                        <label htmlFor="firstName" className='profile__form__label'>First Name:</label>
+                        <label htmlFor="address" className='profile__form__label'>Address:</label>
                     </div>
                     <div className='input'>
                         <input
-                        name='first-name'
+                        name='age'
                         className='profile__form__field'
                         type="text"
-                        id="firstName"
-                        placeholder='first name'
+                        id="age"
+                        placeholder='Age'
+                        onChange={changeAgeHandler}
+                        defaultValue={patientData ? age : ''}
                         />
-                        <label htmlFor="firstName" className='profile__form__label'>First Name:</label>
-                    </div>
-                    <div className='input'>
-                        <input
-                        name='first-name'
-                        className='profile__form__field'
-                        type="text"
-                        id="firstName"
-                        placeholder='first name'
-                        />
-                        <label htmlFor="firstName" className='profile__form__label'>First Name:</label>
-                    </div>
-                    <div className='input'>
-                        <input
-                        name='first-name'
-                        className='profile__form__field'
-                        type="text"
-                        id="firstName"
-                        placeholder='first name'
-                        />
-                        <label htmlFor="firstName" className='profile__form__label'>First Name:</label>
+                        <label htmlFor="age" className='profile__form__label'>Age:</label>
                     </div>
                 </div>
-                <button onClick={saveHandler} className="saveButton">Save Changes</button>
+                <button className="saveButton" type="submit">Save Changes</button>
             </form>
             </div>
             : 
@@ -141,7 +172,7 @@ function PatientProfile(prop){
                     </div>
                     <div className="email-field">
                         <p>Email</p>                
-                        <p>mohamed@gmail.com</p>
+                        <p>{patientData.phone}</p>
                     </div>
                     <div className="address-field">
                         <p>Address</p>                
@@ -149,7 +180,7 @@ function PatientProfile(prop){
                     </div>
                     <div className="age-field">
                         <p>Age</p>                
-                        <p>22</p>
+                        <p>{age}</p>
                     </div>
                 </div>
             </div>}
@@ -159,3 +190,34 @@ function PatientProfile(prop){
 }
 
 export default PatientProfile;
+
+// export async function action({request}){
+//     const data = await request.formData();
+
+//     const profileData={
+//         name:data.get('fullname'),
+//         phone:data.get('phone'),
+//         address:data.get('address'),
+//         age:data.get('age')
+//     }
+
+//     const token = getAuth()
+
+//     const response = await fetch('https://retinal-diseases-diagnosis-system.vercel.app/patient/profile',
+//         {
+//             method:'PUT',
+//             headers:{
+//                 'Authorization': 'Bearer ' + token,
+//                 'Content-Type': 'application/json'
+//             },
+//             body:JSON.stringify(profileData)
+//         }
+//     )
+
+//     if(!response.ok){
+//         throw new json(
+//             {message:'cant get appointments'},
+//             {status:500}
+//         )
+//     }
+// }
