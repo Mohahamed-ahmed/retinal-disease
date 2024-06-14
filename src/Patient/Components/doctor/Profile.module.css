@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  gap: 2rem;
+  padding-top: 5rem;
+}
+
+.loader {
+  margin-left: 5rem;
+  margin-top: 3rem;
+}
+
+.left .icon-container {
+  margin: 0;
+  padding: 0;
+  border-radius: 8px;
+}
+
+.left .icon-container li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  list-style: none;
+  padding: 0.5rem;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  /* font-size: 1.25rem; */
+  border-bottom: 1.75px solid transparent;
+  transition: all 0.3s ease-in;
+}
+
+.left .icon-container li > div {
+  display: flex;
+}
+
+.left .icon-container li p {
+  margin: 0;
+  font-weight: 500;
+}
+
+.left .icon-container li.active {
+  border-color: #2195f3d3;
+}
+
+.left .icon-container li:last-child {
+  color: #ff3333;
+}
+
+.contianer .right {
+}
+
+@media (max-width: 768px) {
+  .left .icon-container li p {
+    display: none;
+  }
+}

@@ -6,7 +6,7 @@ import doctorService from "../../../services/doctor";
 function Appointments() {
   const { data, isPending } = useQuery({
     queryKey: ["appointments"],
-    queryFn: ({signal}) => doctorService.getAppointments({signal}),
+    queryFn: ({ signal }) => doctorService.getAppointments({ signal }),
   });
 
   let content;
@@ -16,7 +16,7 @@ function Appointments() {
       content = <p className={classes.center}>No appointments for today.</p>;
     } else {
       let appointments = data.data.appointments.rows;
-      console.log(appointments)
+      console.log(appointments);
       content = appointments.map((appointment) => (
         <div className={classes.card} key={appointment.id}>
           <p className={classes.time}>{appointment.time}</p>
@@ -30,14 +30,16 @@ function Appointments() {
   }
 
   if (isPending) {
-    content = <p>Loading...</p>
+    content = <p>Loading...</p>;
   }
 
   return (
     <div className={classes.container}>
       <div className={classes.head}>
         <h1 className={classes.title}>Appointments for today</h1>
-        <p className={classes.count}>Total ({data?.data?.appointments.count || 0})</p>
+        <p className={classes.count}>
+          Total ({data?.data?.appointments.count || 0})
+        </p>
       </div>
       <div className={classes.content}>{content}</div>
     </div>

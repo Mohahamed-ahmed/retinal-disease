@@ -35,3 +35,7 @@
 .container .content .card .details a {
     color: #2196f3;
 }
+
+.center {
+  text-align: center;
+}
