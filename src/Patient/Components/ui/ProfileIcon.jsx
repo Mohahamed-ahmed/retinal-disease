@@ -1,4 +1,4 @@
-function ProfileIcon() {
+function ProfileIcon({ className }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -6,6 +6,7 @@ function ProfileIcon() {
       width="1.75rem"
       viewBox="0 0 20 20"
       version="1.1"
+      className={className}
     >
       <title>profile [#1335]</title>
       <desc>Created with Sketch.</desc>

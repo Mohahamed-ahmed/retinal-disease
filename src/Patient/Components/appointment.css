@@ -1,20 +1,33 @@
+@media(min-width:1200px){
+    .appoinment-container{
+        width: 1170px;
+    }
+}
+@media(min-width:992px){
+    .appoinment-container{width: 970px;}
+}
+@media(min-width:786px){
+    .appoinment-container{width: 750px;}
+}
 .appoinment-container{
     display: flex;
     align-items: center;
-    justify-content: space-between;
     height: calc(100vh - 70px);
-
+    position: relative;
+    width: 100%;
 }
 .appoinment-container .appointmentForm{
-    width: 40%;
-    height: 70%;
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    right: 0;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     padding: 3rem 2rem;
-    box-shadow: #959da533 0 8px 24px;;
+    /* box-shadow: #959da533 0 8px 24px; */
 }
 .appoinment-container .appointmentForm .input-container{
     width: 100%;
@@ -24,7 +37,7 @@
 }
 .appoinment-container .appointmentForm .input-container input{
     width: 100%;
-    padding: 10px 0;
+    padding: 10px 5px;
     margin-top: 10px;
     outline: none;
     border-radius: 5px;
@@ -37,30 +50,143 @@
 .appoinment-container .appointmentForm .input-container label{
     position: absolute;
     top: 0;
+    left: 0;
+}
+.appoinment-container .appointmentForm .input-container .error{
+    color: red;
+}
+.appoinment-container .appointmentForm .hours-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.appoinment-container .appointmentForm .hours-container .hours-button{
+    background-color: #7ac4ff;
+    color: white;
+    margin-right: 5px;
 }
 .appoinment-container .appoinment-img{
-    width: 45%;
-    height: 100%;
+    width: 50%;
+    position: absolute;
+    /* height: 100%; */
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background-color: #fafafa;
 }
-.appoinment-container .appoinment-img .text{
+.appoinment-container .appoinment-img::after{
+    position: absolute;
+    content: "";
+    width: 2px;
+    height: 60%;
+    background-color: #7ac4ff;
+    right: 0;
+    top: 100px;
+}
+@media(max-width:749px){
+    .appoinment-container{
+        height: 140vh;
+        flex-direction: column;
+    }
+    .appoinment-container .appoinment-img{
+        height: 50%;
+        width: 100%;
+        margin-top: 10px;
+    }
+    .appoinment-container .appoinment-img::after{
+        transform: rotate(90deg);
+        left: 50%;
+        height: 90%;
+        top: 280px;
+    }
+    .appoinment-container .appoinment-img .doctor-details .text{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .appoinment-container .appointmentForm{
+        height: 50%;
+        width: 100%;
+        right: 0;
+        bottom: 0;
+    }
+}
+@media(max-width:467px){
+    .appoinment-container .appoinment-img::after{
+        transform: rotate(90deg);
+        left: 50%;
+        height: 60%;
+        top: 315px;
+    }
+    .appoinment-container .appointmentForm{
+        padding: 2rem 1rem;
+        height: 60%;
+    }
+}
+@media(max-width:377px){
+    .appoinment-container{
+        height: 160vh;
+        flex-direction: column;
+    }
+    .appoinment-container .appoinment-img::after{
+        transform: rotate(90deg);
+        left: 50%;
+        height: 55%;
+        top: 390px;
+    }
+    .appoinment-container .appointmentForm{
+        padding: 2rem 1rem;
+        height: 50%;
+    }
+}
+.appoinment-container .appoinment-img .box{
+    height: 100%;
+    width: 100%;
     background-color: white;
     padding: 10px 5px;
     border-radius: 7px;
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; */
+    animation: slide-in-from-left 0.7s ease-out;
 }
-.appoinment-container .appoinment-img .text h2{
+.appoinment-container .appoinment-img .box h2{
     padding: 0 20px;
+    margin-top: 60px;
 }
 .appoinment-container .appoinment-img .doctor-details{
+    display: flex;
+    flex-direction: column;
+}
+.appoinment-container .appoinment-img .doctor-details .text{
+    text-align: start;
+    margin-left: 40px;
+    margin-right: 20px;
+}
+.appoinment-container .appoinment-img .doctor-details .text p{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.appoinment-container .appoinment-img .doctor-details .image{
+    margin-top: 20px;
+}
+.appoinment-container .appoinment-img .doctor-details .image p{
+    font-size: 20px;
+}
+.appoinment-container .appoinment-img .doctor-details .image img{
+    width: 120px;
+    margin-top: 10px;
+    border-radius: 50%;
+    border: 1px solid #eee;
+}
 
-}
-.appoinment-container .appoinment-img img{
-    width: 500px;
-}
+@keyframes slide-in-from-left {
+    0% {
+      opacity: 0;
+      transform: translateX(-20%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
 

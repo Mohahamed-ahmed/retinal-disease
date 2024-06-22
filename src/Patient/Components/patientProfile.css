@@ -10,6 +10,14 @@
     margin-left: auto;
     background-color: white;
     }
+
+    @media(max-width:678px){
+      .profile__form__group{
+        height: 50%;
+        margin-top: 0;
+        margin-bottom: 2.7rem;
+      }
+    }
     .profile__form__group .formHead{
       margin-top: -5px;
     }
@@ -21,6 +29,8 @@
       flex-wrap: wrap;
       align-items: center;
       position: relative;
+      /* left: 50%; */
+      /* transform: translateX(-47%); */
       top: -25px;
     }
     .profile__form__group form .input{
@@ -34,13 +44,22 @@
     .profile__form__group .secondPart{
       width: 45%;
     }
+    .profile__form__group form .con{
+      width: 100%;
+      height: 20px;
+      position: absolute;
+      bottom: 0;
+      /* background-color: red; */
+      left: 50%;
+      transform: translateX(-50%);
+    }
     .profile__form__group .saveButton{
-        position: absolute;
-        bottom: 15px;
-        left: 39%;
-        color: white;
-        outline: none;
-        background-color: #1a1a1a;
+      position: relative;
+      bottom: 15px;
+      /* left: 35%; */
+      color: white;
+      outline: none;
+      background-color: #1a1a1a;
     }
 
     .profile__form__field {
@@ -51,7 +70,7 @@
       border-bottom: 2px solid #9b9b9b;
       outline: 0;
       font-size: 17px;
-      padding: 7px 0;
+      padding: 7px;
       background: transparent;
       transition: border-color 0.2s;
     }
@@ -63,7 +82,6 @@
     .profile__form__field:placeholder-shown ~ .form__label {
       font-size: 17px;
       cursor: text;
-      /* top: 10px; */
     }
     
     .profile__form__label {
@@ -90,98 +108,112 @@
       color: #121212;
       font-weight: 500;
     }
-    
-    /* .profile__form__field:not(:placeholder-shown) ~ .profile__form__label {
-      top: 0;
-    } */
-
+/*#########*/
+@media(min-width:1200px){
+  .profContainer{
+      width: 1170px;
+  }
+}
+@media(min-width:992px){
+  .profContainer{width: 970px;}
+}
+@media(min-width:786px){
+  .profContainer{width: 750px;}
+}
 .profContainer{
     display: flex;
     align-items: center;
-    box-shadow: 1px 0 4px 0;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
     height: calc(100vh - 70px);
     border-radius: 20px;
+    margin: 40px 0;
+    width: 100%;
 }
 .profContainer .left-side{
-    background-color:#f3f3f3;
+    /* background-color:#246eaa61; */
     width: 30%;
+    background-color: white;
     height: 100%;
     position: relative;
     border-radius: 20px;
     /* box-shadow: #959da533 0 8px 24px; */
 }
 .profContainer .left-side .buttons-group{
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
-  width: 85%;
+  /* margin-left: auto;
+  margin-right: auto; */
+  position: absolute;
+  width: 100%;
+  /* bottom: auto; */
   margin-top: 45px;
+  bottom: 260px;
+  left: 50%;
+  transform: translateX(-50%);
+  /* background-color: #2196f3;*/
 }
 .profContainer .left-side .buttons-group .edit-div{
-  position: relative;
-  /* width: 100%; */
-  width: 95%;
-  height: 40px;
-  padding: 10px 5px;
-  border-radius: 26px;
-  margin-bottom: 10px;
-  transition: 0.5s;
-  background-color: #246eaa61;
+    position: relative;
+    /* width: 100%; */
+    width: 100%;
+    height: 50px;
+    left: 55%;
+    transform: translateX(-50%);
+    padding: 10px 5px;
+    border-radius: 26px;
+    margin-bottom: 20px;
+    transition: 0.5s;
+    /* background-color: #2196f3; */
 }
 .profContainer .left-side .buttons-group .edit-div .profEditButton{
-  /* position: absolute; */
-  left: 5px;
+  position: absolute;
+  /* left: 5px; */
+  width: 80%;
   transition: 0.3s;
-  top: 0;
-  background-color: transparent;
+  top: 5px;
+  background-color: #2196f3;
   font-size: 20px;
   padding: 7px;
   margin-left: 7px;
   outline: none;
+  color: white;
 }
-/* .profContainer .left-side .buttons-group .edit-div:hover{
-  background-color: #2196f3;
-  width: 100%;
-} */
+
 .profContainer .left-side .buttons-group .logout-div{
   position: relative;
-  /* width: 100%; */
-  width: 100%;
-  height: 40px;
+  width: 95%;
+  left: 55%;
+  height: 50px;
+  transform: translateX(-50%);
   border-radius: 26px;
   transition: 0.5s;
   padding: 10px 5px;
 }
 .profContainer .left-side .buttons-group .logout-div .proflogOutButton{
-  /* position: absolute; */
-  background-color: transparent;
-  font-size: 20px;
-  left: 5px;
-  padding: 7px;
-  top: 50px;
-  transition: 0.3s;
-  margin-left: 7px;
-  outline: none;
+    position: absolute;
+    background-color: transparent;
+    font-size: 20px;
+    padding: 7px;
+    top: 5px;
+    transition: 0.3s;
+    margin-left: 7px;
+    width: 80%;
+    outline: none;
+    color: #2196f3;
 }
-/* .profContainer .left-side .buttons-group .logout-div:hover{
-  background-color: #2196f3;
-  width: 100%;
-} */
 .profContainer .left-side .image-container{
-     /* background-color: red; */
-     padding: 20px;
-     /* margin-bottom: 50px; */
-     /* margin-top: 50px; */
-     height: 201px;
-     border-bottom: 1px solid black;
+  border-radius: 7px;
+  background-color: #2196f3;
+  padding: 20px;
+  height: 201px;
+  position: relative;
 }
 .profContainer .left-side .image{
   height: 108px;
+  position: absolute;
   border-radius: 50%;
   width: 113px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 30px;
+  top: 70%;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .profContainer .left-side .image img{
     width: 113px;
@@ -213,5 +245,36 @@
 .profContainer .content .profData p:last-of-type{
   border-bottom: 1px solid #9b9b9b;
   font-weight: bold;
+}
+
+@media(max-width:847px){
+  .profContainer{
+    height: calc(110vh - 70px);
+    flex-direction: column;
+  }
+  .profContainer .content{
+    padding: 0;
+  }
+  .profContainer .content .profData{
+    padding: 0;
+  }
+  .profContainer .left-side .buttons-group{
+    bottom: -20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 200px;
+  }
+  .profContainer .left-side .buttons-group .edit-div{
+    width: 50%;
+    left: 50px;
+  }
+  .profContainer .left-side .buttons-group .logout-div{
+    width: 50%;
+    left: 50px;
+  }
+  .profContainer .left-side .buttons-group .edit-div .profEditButton{
+    background-color: #2196f3;
+  }
 }
 
