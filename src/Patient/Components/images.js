@@ -4,7 +4,7 @@ import f from '../../assets/86.jpg'
 import c from '../../assets/80-colour-blindness-test-chart-chongqing-tumi-technology-ltdscience-photo-library.jpg'
 import v from '../../assets/97.jpg'
 import d from '../../assets/6.jpg'
-import s from '../../assets/6.jpg'
+import s from '../../assets/57.jpg'
 import e from '../../assets/3.jpg'
 
 export default [
