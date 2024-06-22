@@ -8,7 +8,6 @@
 }
 .doctorHome .first-col .box{
     width: 35%;
-    margin: 50px 0 0 50px;
     background-color: white;
     padding: 20px;
     border-radius: 10px;
@@ -20,8 +19,6 @@
     height: 250px;
     max-width: 100%;
     border-radius: 10px;
-    background-color: rgb(33 150 243);
-    box-shadow: 0 10px 15px -3px rgba(33, 150, 243, .4), 0 -4px 6px -4px rgba(33, 150, 243, .4);
 }
 .doctorHome .first-col .box .testButtno{
     margin-top: 20px;

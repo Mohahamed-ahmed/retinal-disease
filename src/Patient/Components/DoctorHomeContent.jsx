@@ -7,14 +7,12 @@ function DoctorHome(){
     const navigate = useNavigate()
 
     const clickTest=()=>{
-        console.log('ggggg')
-        navigate('test')
+        navigate('/doctor/test')
 
     }
 
     const clickTest2=()=>{
-        console.log('ggggg')
-        navigate('test2')
+        navigate('/doctor/test2')
 
     }
     console.log('hhhhh')

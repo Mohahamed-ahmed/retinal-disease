@@ -8,7 +8,7 @@ function Footer() {
           <h1>Quick Links</h1>
           <ul>
             <li>
-              <a href="/home">Home</a>
+              <a href="/">Home</a>
             </li>
             <li>
               <a href="/contactUs">Contact</a>
