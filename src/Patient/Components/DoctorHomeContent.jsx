@@ -20,7 +20,7 @@ function DoctorHome(){
     console.log('hhhhh')
 
     return(
-        <main className="doctorHome">
+        <div className="doctorHome">
             <div className="first-col">
                 <div className='box'>
                     <img src={colorBlindness} alt="" />
@@ -41,7 +41,7 @@ function DoctorHome(){
                     <button className='testButtno' onClick={clickTest2}>Go To Test</button>
                 </div>
             </div>
-        </main>
+        </div>
     )
 }
 

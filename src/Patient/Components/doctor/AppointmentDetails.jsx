@@ -3,21 +3,13 @@ import classes from "./AppointmentDetails.module.css";
 import Prescription from "./Prescription";
 import { useQuery } from "@tanstack/react-query";
 import doctorService from "../../../services/doctor";
-
-// const appointment = {
-//   id: "1",
-//   date: "2024-05-25",
-//   time: "14:00",
-//   prescription: "",
-//   images: [],
-//   status: "pending",
-//   name: "Mohamed Ali",
-//   address: "Benha",
-//   DOB: "2002-09-1",
-// };
+import EditIcon from "../ui/EditIcon";
+import { useState } from "react";
 
 function AppointmentDetails() {
   const appointmentId = useParams().appointmentId;
+  const [showPrescription, setShowPrescription] = useState(false);
+  const [showNotes, setShowNotes] = useState(false);
 
   const { data, isPending } = useQuery({
     queryKey: ["appointment", appointmentId],
@@ -25,24 +17,43 @@ function AppointmentDetails() {
       doctorService.getAppointmentDetails({ signal, appointmentId }),
   });
 
+  const handleShowPrescription = () => {
+    setShowPrescription(() => true);
+  };
+
+  const handleShowNotes = () => {
+    setShowNotes(() => true);
+  };
+
+  const handleHideForm = () => {
+    setShowNotes(() => false);
+    setShowPrescription(() => false);
+  };
+
   let content;
   if (data?.data) {
-    let appointment = data.data.appointment;
+    let appointment = data.data;
+    const currentdate = new Date();
+    const date = new Date(appointment.Patient.DOB);
+
+    let age = currentdate.getFullYear() - date.getFullYear();
+    const monthDifference = currentdate.getMonth() - date.getMonth();
+    const dayDifference = currentdate.getDate() - date.getDate();
+
+    if (monthDifference < 0 || (monthDifference === 0 && dayDifference < 0)) {
+      age--;
+    }
+
     appointment = {
       ...appointment,
-      date: appointment.date.split("T")[0],
+      age: age,
       time: appointment.time.slice(0, 5),
     };
-    console.log(appointment);
     content = (
       <>
         <div className={classes.left}>
           <div className={classes["app-details"]}>
             <h3 className={classes.title}>Appointment Details</h3>
-            <div className={classes.info}>
-              <p>ID</p>
-              <p>{appointment.id}</p>
-            </div>
             <div className={classes.info}>
               <p>Date</p>
               <p>{appointment.date}</p>
@@ -53,33 +64,43 @@ function AppointmentDetails() {
             </div>
             <div className={classes.info}>
               <p>Status</p>
-              <p>{appointment.status}</p>
+              <p className={appointment.status == 'pending' ? classes.pending : classes.done}>{appointment.status}</p>
             </div>
           </div>
           <div className={classes["patient-details"]}>
             <h3 className={classes.title}>Patient Details</h3>
             <div className={classes.info}>
               <p>Name</p>
-              <p>{appointment.name}</p>
+              <p>{appointment.Patient.name}</p>
             </div>
             <div className={classes.info}>
               <p>Address</p>
-              <p>{appointment.address}</p>
+              <p>{appointment.Patient.address}</p>
             </div>
             <div className={classes.info}>
-              <p>DOB</p>
-              <p>{appointment.DOB}</p>
+              <p>Age</p>
+              <p>{appointment.age}</p>
             </div>
           </div>
         </div>
         <div className={classes.right}>
-          {appointment.prescription ? (
-            <>
-              <h3 className={classes.title}>Prescription</h3>
-              <p>{appointment.prescription}</p>
-            </>
-          ) : (
-            <Prescription appointmentId={appointment.id} />
+          <div className={classes.element}>
+            <h3 className={classes.title}>Prescription</h3>
+            <p>{appointment.prescription || "No prescription to display"}</p>
+            {!appointment.prescription && (
+              <EditIcon onClick={handleShowPrescription} />
+            )}
+          </div>
+          <div className={classes.element}>
+            <h3 className={classes.title}>Notes</h3>
+            <p>{appointment.notes || "No notes to display"}</p>
+            {!appointment.notes && <EditIcon onClick={handleShowNotes} />}
+          </div>
+          {showPrescription && (
+            <Prescription
+              appointmentId={appointment.id}
+              onHideEditForm={handleHideForm}
+            />
           )}
         </div>
       </>

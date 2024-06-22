@@ -14,7 +14,7 @@ function HomeContent(){
     }
     return (
         <>
-        <main className='contentContainer'>
+        <div className='contentContainer'>
             <div className='col-1'>
                 <h2 className='mainText'>commited for exceeding your expections for vision care</h2>
                 <p>the eye clinic is proud to offer comprehenseve general eye services to address the needs of your vision </p>
@@ -26,7 +26,7 @@ function HomeContent(){
                     <p>here where you can find your saftey for your eye</p>
                 </div>
             </div>
-        </main>
+        </div>
         <div className='services'>
             <h1 className='address'>Services</h1>
             <div className='servicesContainer'>

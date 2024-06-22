@@ -1,0 +1,98 @@
+.login__form__group {
+  position: relative;
+  padding: 3rem 1.75rem;
+  width: 90%;
+  max-width: 25rem;
+  margin-bottom: 0.7rem;
+  text-align: center;
+  margin-top: 60px;
+  margin-right: auto;
+  margin-left: auto;
+  box-shadow: #959da533 0 8px 24px;
+}
+.login__form__group .text h2{
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+}
+.login__form__group form {
+  padding-top: 1.5rem;
+}
+.login__form__group form .input {
+  position: relative;
+  padding-bottom: 2rem;
+}
+.login__form__field {
+  font-family: inherit;
+  width: 100%;
+  border: 1px solid #222;
+  border-radius: 8px;
+  outline: 0;
+  font-size: 17px;
+  padding: .75rem .5rem;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+.login__form__field::placeholder {
+  color: transparent;
+}
+
+.login__form__field:placeholder-shown ~ .login__form__label {
+  font-size: 17px;
+  cursor: text;
+  top: .7rem;
+  padding: 0 8px;
+}
+
+.login__form__label {
+  position: absolute;
+  display: block;
+  transition: 0.2s;
+  font-size: 17px;
+  color: #9b9b9b;
+  pointer-events: none;
+}
+
+.login__form__field:focus {
+  font-weight: 500;
+  border-color: #121212;
+}
+
+.login__form__field:focus ~ .login__form__label,
+.login__form__field:not(:placeholder-shown) ~ .login__form__label {
+  position: absolute;
+  top: -1.75rem;
+  display: block;
+  transition: 0.2s;
+  font-size: 17px;
+  color: #121212;
+  font-weight: 500;
+  padding: 0;
+}
+
+.login__form__group .loginButton {
+  background-color: #121212;
+  position: relative;
+  border-radius: 8px;
+  padding: 5px;
+}
+.login__form__group .loginButton .SignInButton {
+  color: white;
+  font-size: 18px;
+  border: none;
+  background-color: #121212;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.SignInButton .loader {
+  width: 1.5rem;
+}
+
+.SignInButton .loader circle {
+  stroke-width: 5px;
+}

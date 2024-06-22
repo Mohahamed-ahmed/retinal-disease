@@ -1,38 +1,60 @@
-.prescription {
+.modal {
+  border-radius: 16px;
+}
 
+.modal h2 {
+  text-align: center;
+  font-size: 1.75rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+.prescription {
+  width: 90%;
+  padding: 1rem 0;
+  margin: 0 auto;
 }
 
 .prescription .field {
-    display: flex;
-    flex-direction: column;
-    gap: .5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .prescription .field label {
-    font-weight: 500;
+  font-weight: 500;
 }
 
 .prescription textarea {
-    border: 1px solid #222;
-    border-radius: 8px;
-    resize: none;
-    outline: none;
-    width: 100%;
-    height: 10rem;
-    padding: 1rem;
-    font-size: 1rem;
+  border: 1px solid #222;
+  border-radius: 8px;
+  resize: none;
+  outline: none;
+  width: 100%;
+  height: 8rem;
+  padding: 1rem;
+  font-size: 1rem;
 }
 
 .prescription button {
-    width: 100%;
-    background-color: #222;
-    color: #fff;
-    padding: 1rem 0;
-    font-size: 1rem;
-    margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: #222;
+  color: #fff;
+  padding: 1rem 0;
+  font-size: 1rem;
+  margin-top: 1rem;
 }
 
+.prescription button svg {
+  width: 1.5rem;
+}
 
+.SignInButton svg circle {
+  stroke-width: 5px;
+}
 
 .file-upload-label input {
   display: none;

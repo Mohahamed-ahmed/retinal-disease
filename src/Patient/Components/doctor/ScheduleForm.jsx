@@ -5,6 +5,8 @@ import classes from "./ScheduleForm.module.css";
 import { useMutation } from "@tanstack/react-query";
 import doctorService from "../../../services/doctor";
 import { client } from "../../../services/api";
+import { useDispatch } from "react-redux";
+import { uiActions } from "../../../store/ui-slice";
 
 const days = [
   "Sunday",
@@ -21,11 +23,32 @@ function ScheduleForm() {
   const [startTime, setStartTime] = useState();
   const [endTime, setEndTime] = useState();
 
+  const dispatch = useDispatch();
+
   const { mutate } = useMutation({
     mutationFn: doctorService.setSchedule,
-    onSuccess: () => {
-      console.log("Updated");
-      client.invalidateQueries("doctor-schedule");
+    onSuccess: (response) => {
+      if (response.data) {
+        dispatch(uiActions.setUiChanged(true));
+        dispatch(
+          uiActions.addNotification({
+            status: "success",
+            title: "Success",
+            message: "Schedule was updated successfully.",
+          })
+        );
+        
+      } else {
+        dispatch(uiActions.setUiChanged(true));
+        dispatch(
+          uiActions.addNotification({
+            status: "error",
+            title: "Error",
+            message: response.error?.info.message || "Something went wrong.",
+          })
+        );
+      }
+      client.invalidateQueries("doctor-schedule");``
     },
   });
 

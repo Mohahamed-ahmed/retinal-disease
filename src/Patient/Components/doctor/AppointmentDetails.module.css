@@ -1,64 +1,87 @@
 .container {
   display: flex;
-  gap: 3rem;
-  margin-top: 2rem;
+  gap: 1.5rem;
+  padding: 2rem 0;
 }
 
 .container .left {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 30%;
 }
 
 .container .left p {
-    margin: .5rem 0;
+  margin: 0.5rem 0;
 }
 
-.container .left .app-details, 
+.container .left .app-details,
 .container .left .patient-details,
-.container .right {
-    background-color: #eee;
-    border-radius: 16px;
-    padding: 1rem;
-} 
+.container .right .element {
+  background-color: #fff;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 16px;
+  padding: 1rem;
+}
 
-.container .left .app-details p:first-of-type, 
+.container .left .app-details p,
+.container .left .patient-details p {
+  font-weight: 500;
+}
+
+.container .left .app-details p:first-of-type,
 .container .left .patient-details p:first-of-type {
-    color: #2196f3;
-    font-weight: 500;
+  color: #60666d;
+  font-weight: 400;
 }
 
-.container .left .app-details {
+.container .left .app-details .pending {
+  color: #ffcc00;
 }
-
-.container .left .patient-details {
+.container .left .app-details .done {
+  color: #4caf50;
 }
 
 .container .right {
-    flex-grow: 1;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
+.container .right .element {
+  position: relative;
+  height: 50%;
+}
+
+.container .right .element svg {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  cursor: pointer;
+}
+
+.container .right p {
+  margin: 0;
+}
 
 .container .info {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .container .title {
-    margin: 0;
-    padding-bottom: .25rem;
-    border-bottom: 1px solid #222;
-    width: max-content;
+  margin: 0;
+  padding-bottom: 0.25rem;
 }
 
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-    }
+@media (max-width: 992px) {
+  .container {
+    flex-direction: column;
+  }
 
-    .container .left {
-        width: auto;
-    }
+  .container .left {
+    width: auto;
+  }
 }

@@ -10,6 +10,8 @@ import EditIcon from "../ui/EditIcon";
 import profileImg from "../../../assets/profileImg.png";
 import { client } from "../../../services/api";
 import Loader from "../ui/Loader";
+import { useDispatch } from "react-redux";
+import { uiActions } from "../../../store/ui-slice";
 
 function EditProfile({ doctorData, ...props }) {
   const [formData, setFormData] = useState({
@@ -19,6 +21,8 @@ function EditProfile({ doctorData, ...props }) {
     address: doctorData.address || "",
     description: doctorData.description || "",
   });
+
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -38,7 +42,14 @@ function EditProfile({ doctorData, ...props }) {
   const { mutate, isPending } = useMutation({
     mutationFn: doctorService.editProfile,
     onSuccess: () => {
-      console.log("Success");
+      dispatch(uiActions.setUiChanged(true));
+      dispatch(
+        uiActions.addNotification({
+          status: "success",
+          title: "Success",
+          message: "Profile was updated successfully.",
+        })
+      );
       client.invalidateQueries("doctor-profile");
     },
   });
