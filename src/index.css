@@ -8,6 +8,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+main {
+  width: 80%;
+  margin: 0 auto;
+}
+
 * {
   box-sizing: border-box;
 }

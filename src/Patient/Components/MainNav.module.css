@@ -1,0 +1,88 @@
+.header {
+  z-index: 100;
+  width: 80%;
+  margin: 1.5rem auto;
+  border-radius: 20px;
+  background-color: #efefef;
+}
+
+.header.fix-header {
+  width: 100%;
+  position: fixed;
+  margin: 0;
+  top: 0;
+  border-radius: 0%;
+  animation: header-animation 0.2s forwards linear;
+}
+
+@keyframes header-animation {
+  0% {
+    transform: scaleX(.9);
+  }
+  100% {
+    margin: 0;
+    transform: scaleX(1);
+  }
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.header-container .logoLinks {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+.header-container .logoLinks .logo {
+  display: flex;
+  align-items: center;
+}
+.header-container .logoLinks .logo h2 {
+  margin: 0;
+  color: #2196f3;
+}
+.header-container .logoLinks .logo img {
+  width: 24px;
+  height: 24px;
+}
+
+.header-container .buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-container .buttons button {
+  text-wrap: nowrap;
+}
+.header-container .buttons .NavLogin {
+  background-color: #fafafa;
+  outline: none;
+}
+.header-container .buttons :last-child {
+  background-color: #2196f3;
+  color: white;
+  outline: none;
+}
+
+.header-container .icon {
+  border-radius: 50%;
+}
+
+.menu {
+  display: none;
+}
+
+@media (max-width: 992px) {
+  .menu {
+    display: block;
+  }
+  .header-container .buttons {
+    display: none;
+  }
+}

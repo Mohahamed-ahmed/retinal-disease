@@ -7,21 +7,26 @@ import LogoutIcon from "../ui/LogoutIcon";
 import Schedule from "./Schedule";
 import ProfileData from "./ProfileData";
 import Loader from "../ui/Loader";
+import { useDispatch } from "react-redux";
+import { logout } from "../../../store/user-actions";
 
 function Profile({ scheduleData, doctorData, isPending }) {
   const [selected, setSelected] = useState("");
-  let content;
+  let content = <ProfileData doctor={doctorData} />;
 
   if (selected === "schedule" && !isPending) {
     content = <Schedule schedule={scheduleData?.schedule} />;
-  } else {
-    console.log(doctorData);
-    content = <ProfileData doctor={doctorData} />;
   }
 
   if (isPending) {
     content = <Loader className={classes.loader} />;
   }
+
+  const dispatch = useDispatch();
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
+
   return (
     <div className={classes.container}>
       <div className={classes.left}>
@@ -44,7 +49,7 @@ function Profile({ scheduleData, doctorData, isPending }) {
             </div>
             <p>Schedule</p>
           </li>
-          <li>
+          <li onClick={logoutHandler}>
             <div className={classes.icon}>
               <LogoutIcon />
             </div>

@@ -13,12 +13,16 @@ const doctorService = {
     return await apiService.put("/doctor/profile", doctorData);
   },
 
-  getAppointments: async () => {
-    let date = new Date().toISOString().split('T')[0];
-    return await apiService.get("/doctor/appointments?date="+date);
+  getAppointments: async ({date}) => {
+    let selectedDate;
+    if (date) {
+      selectedDate = new Date(date);
+    }
+
+    return await apiService.get(`/doctor/appointments?date=${selectedDate || ""}`);
   },
 
-  getAppointmentDetails: async ({appointmentId}) => {
+  getAppointmentDetails: async ({ appointmentId }) => {
     return await apiService.get(`/doctor/appointments/${appointmentId}`);
   },
 

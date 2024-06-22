@@ -1,19 +1,51 @@
 .container {
+  padding-top: 1rem;
 }
 
 .container .head {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 2rem;
 }
 
-.container .head .title {
-  font-size: 2rem;
+.container .head .headContent {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-wrap: nowrap;
+}
+
+.container .head .headContent .title {
+  font-size: 1.5rem;
+  margin: 0;
+  font-family: monospace;
+}
+
+.container .head .headContent p {
+  margin: 0;
+  font-size: 1.5rem;
 }
 
 .container .head .count {
   font-weight: 500;
   color: #2196f3;
+}
+
+.container .date {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.container .date input {
+  padding: 1rem;
+  width: 12rem;
+  border: none;
+  outline: none;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  color: #60666d;
+  border-radius: 8px;
 }
 
 .container .content {
@@ -25,17 +57,73 @@
 
 .container .content .card {
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  background-color: #eee;
+  background-color: #fff;
   border-radius: 1rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.container .content .card p {
+  margin: 0;
+}
+
+.container .content .card .left {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.container .content .card .element {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.container .content .card .element svg {
+  width: 1.5rem;
+}
+
+.card .element .name {
+  font-weight: 500;
+}
+
+.card .element .date{
+  color: #60666d;
+} 
+
+.card .tag {
+  position: absolute;
+  right: .75rem;
+  top: .75rem;
+  padding: .25rem .75rem;
+  text-align: center;
+  border-radius: 16px;
+  background-color: #00C851;
+}
+
+.card .tag.pending {
+  background-color: #ffcc00;
+}
+
+.container .content .card .right {
+  align-self: flex-end;
 }
 
 .container .content .card .details a {
-    color: #2196f3;
+  color: #2196f3;
+  border-bottom: 1px solid #2196f3;
 }
 
 .center {
   text-align: center;
+}
+
+.container .loader {
+  height: 15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

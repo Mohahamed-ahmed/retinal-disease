@@ -1,4 +1,5 @@
-function ProfileIcon({ className }) {
+/* eslint-disable react/prop-types */
+function ProfileIcon({className}) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
