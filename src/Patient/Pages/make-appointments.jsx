@@ -4,12 +4,12 @@ import {getAuth } from "../util/auth";
 
 function MakeAppointments(){
     const data = useRouteLoaderData('doctor-details');
-    const doctordata = data.doctor 
+    console.log(data)
     const param = useParams()
     const id = param.doctorId
-    // console.log(doctordata)
+    console.log(id)
     return (
-        <AppForm datadoc={doctordata} doctorId={id}></AppForm>
+        <AppForm datadoc={data} doctorId={id}></AppForm>
     )
 
 }
@@ -22,6 +22,7 @@ export async function loader({params}){
     const token = getAuth()
 
     const id = params.doctorId;
+    console.log(id)
 
     const response = await fetch('https://retinal-diseases-diagnosis-system.vercel.app/doctor/details/' + id ,{
         method:'GET',

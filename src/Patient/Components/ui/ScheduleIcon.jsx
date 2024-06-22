@@ -1,4 +1,4 @@
-function ScheduleIcon() {
+function ScheduleIcon({ className }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -7,7 +7,8 @@ function ScheduleIcon() {
       id="_x32_"
       viewBox="0 0 512 512"
       xmlSpace="preserve"
-      width="1.75rem"      
+      width="1.75rem"
+      className={className}
     >
       <g>
         <rect x="119.256" y="222.607" width="50.881" height="50.885" />

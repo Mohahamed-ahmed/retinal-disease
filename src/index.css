@@ -41,3 +41,7 @@ button {
   font-family: inherit;
   cursor: pointer;
 }
+main{
+  width: 90%;
+  margin: 0 auto;
+}
